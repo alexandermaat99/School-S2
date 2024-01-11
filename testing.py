@@ -31,11 +31,11 @@ for column in filtered_df.columns:
 slope, intercept, r_value, p_value, std_err = linregress(filtered_df['FGA'], filtered_df['Salary'])
 
 # Display regression results
-print("\nLinear Regression Results (FieldGoalsAtempted vs. Salary):")
-print(f"Slope: {slope}")
-print(f"Intercept: {intercept}")
-print(f"R-squared: {r_value**2}")
-print(f"P-value: {p_value}")
+# print("\nLinear Regression Results (FieldGoalsAtempted vs. Salary):")
+# print(f"Slope: {slope}")
+# print(f"Intercept: {intercept}")
+# print(f"R-squared: {r_value**2}")
+# print(f"P-value: {p_value}")
 
 # Create scatter plot with linear regression line
 plt.figure(figsize=(12, 6))
@@ -46,8 +46,52 @@ sns.scatterplot(x=filtered_df['FGA'], y=filtered_df['Salary'], label='Data Point
 # Linear regression line
 plt.plot(filtered_df['FGA'], slope * filtered_df['FGA'] + intercept, color='red', label='Linear Regression Line')
 
-plt.title('Linear Regression: FieldGoalsAtempted vs. Salary')
-plt.xlabel('FieldGoalsAtempted')
-plt.ylabel('Salary')
-plt.legend()
-plt.show()
+# plt.title('Linear Regression: FieldGoalsAtempted vs. Salary')
+# plt.xlabel('FieldGoalsAtempted')
+# plt.ylabel('Salary')
+# plt.legend()
+# plt.show()
+
+
+def univariate(df):
+    
+    import pandas as pd
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+    from scipy.stats import pearsonr, linregress
+
+    df_output = pd.DataFrame(columns=['type', 'missing','unique', 'min', 'q1', 'median', 'q3', 'max', 'mean', 'std', 'mode', 'skew', 'kurt'])
+
+    for col in df:
+        missing = df[col].isna().sum()
+        if pd.api.types.is_numeric_dtype(df[col]):
+            unique = df[col].nunique()
+            min = df[col].min()
+            q1 = df[col].quantile(0.25)
+            median = df[col].median()
+            q3 = df[col].quantile(0.75)
+            max = df[col].max()
+            mean = df[col].mean()
+            std = df[col].std()
+            mode = df[col].mode()[0]
+            skew = df[col].skew()
+            kurt = df[col].kurt()
+        
+            df_output.loc[col] = ['numeric', missing, unique, min, q1, median, q3, max, mean, std, mode, skew, kurt]
+        else:
+            df_output.loc[col] = ['categorical', missing, 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', df[col].mode()[0], 'NA', 'NA']
+
+            sns.countplot(data =df, x=col)
+            plt.show
+        
+    print(df_output)
+
+univariate(df)
+
+# bivariate
+for col in df:
+    if pd.api.types.is_numeric_dtype(df[col]):
+        print(f'{col}\t tPearson r: \t {df[col].corr(df["Salary"])}')
+
+else:
+    print(f'{col}\t Chi-Square: \t {pd.crosstab(df[col], df["Salary"])}')
