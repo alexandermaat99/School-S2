@@ -1,11 +1,8 @@
 {
-	"folders": [
-		{
-			"path": "../Wordle401"
-		},
-		{
-			"path": "."
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "../Wordle401"
+    }
+  ],
+  "settings": {}
 }
