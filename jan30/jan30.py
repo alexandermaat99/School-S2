@@ -51,6 +51,7 @@ df = pd.get_dummies(df, columns=['sex', 'smoker', 'region'],drop_first=True)
 df = pd.get_dummies(df, columns=df.select_dtypes(['object']).columns,drop_first=True)
 print(df.head())
 
+df = df * 1
 y = df['charges']
 x = df.drop(columns=['charges'])
 print(sm.OLS(y, X.assign(const=1)).fit().summary())
