@@ -25,7 +25,7 @@ df_minMax = pd.DataFrame(preprocessing.MinMaxScaler().fit_transform(df), columns
 y = df_zscore.charges
 X = df_zscore.drop(columns=['charges']).assign(const=1)
 model = sm.OLS(y, X).fit()
-# print(model.summary())
+print(model.summary())
 # coef furtherst from zero is most important most impact
 
 import numpy as np
@@ -81,12 +81,12 @@ df2['Predicted'] = model.fittedvalues
 # shows error
 df2['Residual'] = abs(df2['charges'] - df2['Predicted'])
 df2['Squared Residual'] = (df2['charges'] - df2['Predicted'])**2
-print('')
-print(f"Mean Absolute Error: {df2.Residual.mean()}")
-print(f"Root Mean Squared Error: {df2['Squared Residual'].mean() ** .5}")
-print('')
+# print('')
+# print(f"Mean Absolute Error: {df2.Residual.mean()}")
+# print(f"Root Mean Squared Error: {df2['Squared Residual'].mean() ** .5}")
+# print('')
 # change to absolute value then average out
 
-print(df2.head())
+# print(df2.head())
 
 
