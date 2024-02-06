@@ -69,3 +69,26 @@ def univariate(df):
 
 #     return df_output
 
+def basic_wrangling(df, unique_threshold=.95, missing_threshold=.5, messages=True):
+  import pandas as pd
+
+  # primary keys or too many unique values
+  # too much missing data
+  # single value columns
+
+  for col in df:
+    missing = df[col].isna().sum()
+    unique = df[col].nunique()
+    rows = df.shape[0]
+
+    if missing / rows >= missing_threshold:
+      df.drop(columns=[col], inplace=True)
+      if messages: print(f'Column "{col}" dropped because of too much missing data ({round(missing/rows, 2)*100}%)')
+    elif unique / rows >= unique_threshold:
+      if df[col].dtype in ['object', 'int64']:
+        df.drop(columns=[col], inplace=True)
+        if messages: print(f'Column "{col}" dropped because of too many unique values ({round(unique/rows, 2)*100}%)')
+    elif unique == 1:
+      df.drop(columns=[col], inplace=True)
+      if messages: print(f'Column "{col}" dropped because it has only one value ({df[col].unique()[0]})')
+  return df
