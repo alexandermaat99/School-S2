@@ -1,0 +1,27 @@
+@startuml DentistOffice
+left to right direction
+actor "Receptionist\n(Mindy)" as Receptionist
+actor "Dental Hygienists" as Hygienists
+actor "Office Manager\n(Tom)" as Manager
+
+rectangle "Dental Office System" {
+    usecase "Record and Update Patient Info" as UC2
+    usecase "Manage Office Visit Records" as UC3
+    usecase "Enter Dental Procedures and Notes" as UC4
+    usecase "Generate Procedure Reports" as UC5
+    usecase "Manage Billing and Insurance" as UC6
+    usecase "Maintain Staff Information" as UC7
+    usecase "Check Overdue Accounts" as UC8
+    usecase "Reminder Calls for Payments" as UC9
+}
+
+Receptionist --> UC2
+Receptionist --> UC3
+Hygienists --> UC4
+Hygienists --> UC5
+Manager --> UC6
+Manager --> UC7
+Manager --> UC8
+Receptionist --> UC9
+
+@enduml
