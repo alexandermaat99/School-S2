@@ -1,0 +1,29 @@
+NIST Incident Response Lifecycle Phases 
+- Playbooks, general set of steps taken to handle the different types of incidents 
+
+
+-- Need to detect if an incident has, or is likely to occur 
+- this is called a precursor (if it might happen soon)
+- incident (this might be happening right now)
+
+Locard's Exchange Principle - Everything leaves a trace/ evidence 
+
+3rd step of Incident Response Lifestyle
+-- Classification of incident 
+- Put attact in a category (DDOS, Internal Hacking, etc)
+- Criticality (How timely is this affecting our big critical systms?)
+- Sensativity (who do we need to tell about this? Lawyers, sensative data?) 1-3
+- Inform appropriate entities (FBI?)
+- Containment - keep the problem from getting worse (risk of Containment)
+
+--Gathering Evidence (especially if there is law inforcement involvement)
+-Criminals go free when evidence is messed with 
+-Take image snapshot of server (hashing image) *Create a forensic image
+-Keep an evidence log (who has access to this file at this certian time) *Chain of custody
+
+--Eradication
+
+
+--Recovery
+-Keep a very close eye on things 
+
