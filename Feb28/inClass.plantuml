@@ -1,0 +1,18 @@
+@startuml
+start
+
+:Gather Receipts;
+:Complete Reimbursement Form;
+:Submit Receipts & Form;
+
+if (Is Form Correct?) then (yes)
+    :Approve Reimbursement;
+    :Employee Receives Funds;
+else (no)
+    :Return Form for Correction;
+    :Employee Corrects and Resubmits Form;
+    -> [back to] Is Form Correct?;
+endif
+
+stop
+@enduml
